@@ -29,9 +29,9 @@ const Home = () => {
       ) : null}
       <SearchBar setSearchTerm={setSearchTerm} />
       <GridCard header={!searchTerm ? "Popular Movies" : "Search Result"}>
-        {state.results.map((movie) => (
+        {state.results.map((index, movie) => (
           <Thumb
-            key={movie.id}
+            key={index}
             clickable={true}
             image={
               movie.poster_path
