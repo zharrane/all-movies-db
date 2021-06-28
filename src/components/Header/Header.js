@@ -13,7 +13,8 @@ const Header = () => (
           <h1>Zharrane MDB</h1>
         </Logo>
       </Link>
-      <TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" />
+      <a href="https://www.themoviedb.org/" alt="Movie data base">
+      <TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" /></a>
     </Content>
   </Wrapper>
 )

@@ -21,6 +21,10 @@ export const Wrapper = styled.div`
       opacity: 1;
     }
   }
+
+  @media screen and (max-width: 720px) {
+    height: 400px;
+  }
 `
 export const Content = styled.div`
   padding: 20px;

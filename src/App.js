@@ -11,12 +11,12 @@ import { GlobalStyle } from "./GlobalStyle"
 
 const App = () => {
   return (
-    <Router className="App">
+    <Router>
       <Header />
       <Routes>
-        <Route path="/*" element={<NotFound />} />
         <Route path="/" element={<Home />} exact />
         <Route path="/:movieId" element={<Movie />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <GlobalStyle />
     </Router>
