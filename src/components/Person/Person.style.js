@@ -18,10 +18,17 @@ const PersonImage = styled.img`
   }
 `
 const Content = styled.div`
+  .original-name {
+    font-weight: bold;
+  }
   p {
     color: var(--medGrey);
   }
-  padding: 0px 20px;
+  margin-left: 10px;
+  margin-right: 4px;
+  border: 1px solid #1c1c1c12;
+  border-radius: 8px;
+  height: 300px;
 `
 const Wrapper = styled.div`
   overflow-x: scroll;
@@ -41,7 +48,6 @@ const Wrapper = styled.div`
 
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
   }
 
