@@ -17,6 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />} exact />
         <Route path="/:movieId" element={<Movie />} />
         <Route path="/*" element={<NotFound />} />
+        <Route path="/directors/:directorName" element={<NotFound />} />
       </Routes>
       <GlobalStyle />
     </Router>

@@ -1,19 +1,18 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
 // Config
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../config"
 
 //Components
 import { Spinner } from "./Spinner"
 import HeaderNav from "./HeaderNav"
+import Person from "./Person/Person"
 //Hook
 import { useMovieFetch } from "../hooks/useMovieFetch"
 import { useParams } from "react-router-dom"
 // Image
 import NO_IMAGE from "../images/no_image.jpg"
 import Thumb from "./Thumb"
-import GridCard from "./GridCard"
 
 const Wrapper = styled.div`
   background: linear-gradient(
@@ -38,46 +37,22 @@ const Content = styled.div`
   width: 300px;
   margin: 20px 0;
 `
-const Director = styled.div`
-  width: 150px;
+const Participant = styled.div`
+  padding: 10px 20px;
+  max-width: var(--maxWdith);
+  width: 100%;
   height: 200px;
-  .director-link {
-    margin: 0 auto;
-    font-weight: bold;
-    font-size: 1.3rem;
-    text-decoration: none;
-    color: var(--darkGrey);
-    :hover {
-      opacity: 0.8;
-    }
-  }
-`
-const DirectorImg = styled.img`
-  width: 130px;
-  max-width: 150px;
-  height: 180px;
-  transition: all 0.3s;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
-  animation: animateThumb 0.5s;
-
-  :hover {
-    opacity: 0.8;
-  }
-  @keyframes animateThumb {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  h1 {
+    color: var(--medGrey);
   }
 `
 
 const Movie = () => {
   const movieId = useParams()
   const { state, loading, error } = useMovieFetch(movieId)
+  const directorsCount = loading ? 0 : state.movieDirectors.length
   console.log(state)
+  if (error) return <div>Something went wrong...</div>
   return (
     <>
       <HeaderNav movieTitle={state.original_title} />
@@ -95,29 +70,14 @@ const Movie = () => {
           />
         </Content>
       </Wrapper>
-      <GridCard header="Directors">
-        {loading ? (
-          <Spinner />
-        ) : (
-          state.movieDirectors.map((director) => {
-            return (
-              <Director>
-                <DirectorImg
-                  src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${director.profile_path}`}
-                  alt="director-thumb"
-                />
-                <Link
-                  className="director-link"
-                  key={director.id}
-                  to={`/${director.name}`}
-                >
-                  {director.name}
-                </Link>
-              </Director>
-            )
-          })
-        )}
-      </GridCard>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Participant>
+          <h1> {directorsCount > 1 ? "Movie Directors" : "Movie Director"}</h1>
+          <Person persons={state.movieDirectors} />
+        </Participant>
+      )}
     </>
   )
 }

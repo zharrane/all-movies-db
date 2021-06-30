@@ -39,9 +39,8 @@ const Home = () => {
                 : NoImage
             }
             movieId={movie.id}
-          >
-            {movie.title}
-          </Thumb>
+            movieTitle={movie.title}
+          ></Thumb>
         ))}
       </GridCard>
       {loading && <Spinner />}
