@@ -8,22 +8,20 @@ const Person = ({ persons = [] }) => {
     <Wrapper>
       <ul>
         {persons.map((person) => {
-          if (person.profile_path) {
-            return (
-              <Content>
-                <PersonImage
-                  key={person.id}
-                  src={IMAGE_BASE_URL + BACKDROP_SIZE + person.profile_path}
-                  alt="movie-staff"
-                />
-                <p className="original-name" key={person.id + 2021}>
-                  {person.original_name}
-                </p>
+          return (
+            <Content>
+              <PersonImage
+                key={person.id}
+                src={IMAGE_BASE_URL + BACKDROP_SIZE + person.profile_path}
+                alt="movie-staff"
+              />
+              <p className="original-name" key={person.id + 2021}>
+                {person.original_name}
+              </p>
 
-                <p key={person.id + 2023}> {person.character}</p>
-              </Content>
-            )
-          }
+              <p key={person.id + 2023}> {person.character}</p>
+            </Content>
+          )
         })}
       </ul>
     </Wrapper>
