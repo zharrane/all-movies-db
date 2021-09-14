@@ -2,12 +2,13 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
   border-bottom: 1px solid var(--darkGrey);
-  background-position: right top;
+  background-position-x: 70%;
+  background-position-y: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-image: url(${({ image }) => image}); */
   width: 100%;
   position: relative;
+
   z-index: -1;
   background-image: linear-gradient(
       to right,
@@ -16,6 +17,8 @@ const Wrapper = styled.div`
     ),
     url(${({ image }) => image});
   .bg-style {
+    position: absolute;
+    inset: 0 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -33,14 +36,15 @@ const Content = styled.div`
   width: 100%;
 `
 const Participant = styled.div`
-  background: var(--lightGrey);
+  overflow-x: hidden;
+  flex: 3;
 `
 const Participants = styled.div`
   padding: 10px 20px;
-  max-width: var(--maxWdith);
   width: 100%;
   height: 100%;
   width: 100%;
+  display: flex;
   max-width: var(--maxWdith);
   h1 {
     color: var(--medGrey);
@@ -115,10 +119,6 @@ const MovieInfos = styled.div`
     padding: 10px 10px;
   }
 `
-const DirectorImg = styled.div`
-  border-left: 5px solid white;
-  margin-right: 3px;
-`
 
 const MovieCover = styled.img`
   border-width: 0px;
@@ -128,12 +128,4 @@ const MovieCover = styled.img`
   overflow: hidden;
   border-radius: 8px;
 `
-export {
-  Participants,
-  Participant,
-  Content,
-  Wrapper,
-  MovieInfos,
-  MovieCover,
-  DirectorImg,
-}
+export { Participants, Participant, Content, Wrapper, MovieInfos, MovieCover }

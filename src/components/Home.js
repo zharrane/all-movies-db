@@ -17,6 +17,7 @@ import NoImage from "../images/no_image.jpg"
 const Home = () => {
   const { state, loading, error, searchTerm, setIsLoadingMore, setSearchTerm } =
     useMovieFetch()
+  // window.scrollTo(0, 0)
   if (error) return <div>Something went wrong...</div>
   return (
     <>

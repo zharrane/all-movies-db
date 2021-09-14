@@ -7,11 +7,10 @@ import {
   Wrapper,
   MovieInfos,
   MovieCover,
-  DirectorImg,
 } from "./Movie.style"
 // Config
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../../config"
-
+import { calcTime } from "../../helpers"
 //Components
 import { Spinner } from "../Spinner"
 import HeaderNav from "../HeaderNav"
@@ -23,6 +22,7 @@ import { useMovieFetch } from "../../hooks/useMovieFetch"
 import { useParams } from "react-router-dom"
 // Image
 import NO_IMAGE from "../../images/no_image.jpg"
+import SideInforBar from "../SideInforBar"
 
 const Movie = () => {
   const movieId = useParams()
@@ -30,7 +30,7 @@ const Movie = () => {
   let release_date = new Date(state.release_date)
   let year = release_date.getFullYear()
   let rating = Math.floor(state.vote_average * 10)
-
+  window.scrollTo(0, 0)
   console.log(state)
   if (error) return <div>Something went wrong...</div>
   return (
@@ -48,6 +48,7 @@ const Movie = () => {
                   ? IMAGE_BASE_URL + POSTER_SIZE + state.poster_path
                   : NO_IMAGE
               }
+              alt={`cover of ${state.title} movie`}
               movieId={movieId}
             />
             <MovieInfos>
@@ -72,9 +73,7 @@ const Movie = () => {
                 )}
                 <span>
                   <span> • </span>
-                  {` ${Math.floor(state.runtime / 60)} h  ${
-                    state.runtime % 60
-                  } m `}
+                  {calcTime(state.runtime)}
                 </span>
               </div>
 
@@ -90,7 +89,6 @@ const Movie = () => {
                       return (
                         <li key={director.id}>
                           <div className="director-card">
-                            <DirectorImg />
                             <div>
                               <p
                                 className="director-name"
@@ -120,10 +118,11 @@ const Movie = () => {
         <Spinner />
       ) : (
         <Participants>
-          <h1> Distribution of roles</h1>
           <Participant>
+            <h1> Top Billed Cast</h1>
             <Person persons={state.actors} />
           </Participant>
+          <SideInforBar />
         </Participants>
       )}
     </>

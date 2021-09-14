@@ -15,8 +15,10 @@ export const useMovieFetch = () => {
   const [state, setState] = useState(initialState)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  console.log(state)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
   const fetchMovies = async (page, searchTerm = "") => {
+    searchTerm.trim()
     try {
       setError(false)
       setLoading(true)

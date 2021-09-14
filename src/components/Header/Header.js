@@ -5,7 +5,7 @@ import TMDBLogo from "../../images/tmdb_logo.svg"
 import { Wrapper, Content, LogoImg, TMDBLogoImg, Logo } from "./Header.styles"
 
 const Header = () => (
-  <Wrapper>
+  <Wrapper >
     <Content>
       <Link to="/">
         <Logo>
